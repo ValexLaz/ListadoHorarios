@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "311495889181",
+    "project_id": "horarios-bee02",
+    "storage_bucket": "horarios-bee02.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:311495889181:android:647e5e331a5e74f1f911f4",
+        "android_client_info": {
+          "package_name": "com.example.horarios"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAN5DJ_iuvktqv8-tQlU74Ava5o09DSRjg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
