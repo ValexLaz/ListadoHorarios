@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'My App',
-      home: ProfessorView(), // Cambia MyHomePage() por LoginPage()
+      home: LoginPage(), // Cambia MyHomePage() por LoginPage()
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'carrera_card.dart';
 import 'firebase_firestore.dart';
+import 'package:horarios/shared/components/item.dart'; // Asegúrate de importar este paquete si no lo has hecho
+import 'semestres.dart'; // Asegúrate de importar la página de semestres
 
 class CarrerasPage extends StatefulWidget {
   @override
@@ -15,6 +16,20 @@ class _CarrerasPageState extends State<CarrerasPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Carreras'),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.calendar_today), // Puedes cambiar el icono según tus preferencias
+            onPressed: () {
+              // Navegar a SemestresPage al hacer clic en el botón
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SemestresPage(),
+                ),
+              );
+            },
+          ),
+        ],
       ),
       body: FutureBuilder<List<Map<String, dynamic>>>(
         // Obtener la lista de carreras desde Firestore
@@ -29,9 +44,9 @@ class _CarrerasPageState extends State<CarrerasPage> {
             return ListView.builder(
               itemCount: carreras.length,
               itemBuilder: (context, index) {
-                return CarreraCard(
-                  name: carreras[index]['name'],
-                  description: carreras[index]['description'],
+                return ItemOfList(
+                  data: carreras[index],
+                  title: carreras[index]['name'],
                 );
               },
             );

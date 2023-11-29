@@ -17,16 +17,17 @@ class FirebaseAuthService {
   }
 
   // Método para iniciar sesión
-  Future<void> signInUser(String email, String password) async {
+  Future<bool> signInUser(String email, String password) async {
     try {
       await _auth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
-      print('Incio sesión');
+      print('Inicio sesión');
+      return true; // Sign-in successful
     } catch (e) {
       print('Error en el inicio de sesión: $e');
-      rethrow;
+      return false; // Sign-in failed
     }
   }
 

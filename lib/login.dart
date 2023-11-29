@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'carreras.dart';
 import 'firebase_authentication.dart';
 
 class LoginPage extends StatelessWidget {
@@ -94,7 +95,32 @@ class LoginPage extends StatelessWidget {
                 // Verifica que los campos no estén vacíos
                 if (email.isNotEmpty && password.isNotEmpty) {
                   // Llama al método de inicio de sesión
-                  await authService.signInUser(email, password);
+                  bool success = await authService.signInUser(email, password);
+
+                  if (success) {
+                    // Navegar a CarrerasPage si el inicio de sesión es exitoso
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CarrerasPage(),
+                      ),
+                    );
+                  } else {
+                    // Muestra un mensaje de error si hay un problema con el inicio de sesión
+                    showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        title: Text('Error'),
+                        content: Text('Credenciales incorrectas. Por favor, inténtalo de nuevo.'),
+                        actions: [
+                          TextButton(
+                            onPressed: () => Navigator.pop(context),
+                            child: Text('OK'),
+                          ),
+                        ],
+                      ),
+                    );
+                  }
                 } else {
                   // Muestra un mensaje de error si algún campo está vacío
                   showDialog(

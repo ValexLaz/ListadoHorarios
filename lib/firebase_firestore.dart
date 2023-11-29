@@ -38,18 +38,53 @@ class FirebaseFirestoreService {
     }
   }
 
-  Future<List<Map<String, dynamic>>> getCarreras() async {
+   Future<List<Map<String, dynamic>>> getCarreras() async {
     try {
-      QuerySnapshot querySnapshot =
-          await _firestore.collection('carreras').get();
-      return querySnapshot.docs
-          .map((doc) => doc.data() as Map<String, dynamic>)
-          .toList();
+      QuerySnapshot querySnapshot = await _firestore.collection('carreras').get();
+      return querySnapshot.docs.map((doc) => doc.data() as Map<String, dynamic>).toList();
     } catch (e) {
       print('Error al obtener carreras: $e');
       throw Exception('Error al obtener carreras');
     }
   }
 
+  Future<List<Map<String, dynamic>>> getSemestresByCarreraId(String carreraId) async {
+    try {
+      QuerySnapshot querySnapshot = await _firestore
+          .collection('semestres')
+          .where('carrera_id', isEqualTo: carreraId)
+          .get();
+      return querySnapshot.docs.map((doc) => doc.data() as Map<String, dynamic>).toList();
+    } catch (e) {
+      print('Error al obtener semestres: $e');
+      throw Exception('Error al obtener semestres');
+    }
+  }
+
+  Future<List<Map<String, dynamic>>> getDocentes() async {
+    try {
+      QuerySnapshot querySnapshot =
+          await _firestore.collection('docentes').get();
+      return querySnapshot.docs
+          .map((doc) => doc.data() as Map<String, dynamic>)
+          .toList();
+    } catch (e) {
+      print('Error al obtener docentes: $e');
+      throw Exception('Error al obtener docentes');
+    }
+  }
+
+  Future<List<Map<String, dynamic>>> getMaterias() async {
+    try {
+      QuerySnapshot querySnapshot =
+          await _firestore.collection('materias').get();
+      return querySnapshot.docs
+          .map((doc) => doc.data() as Map<String, dynamic>)
+          .toList();
+    } catch (e) {
+      print('Error al obtener materias: $e');
+      throw Exception('Error al obtener materias');
+    }
+  }
   // Otros métodos para acceder y modificar datos en las colecciones
 }

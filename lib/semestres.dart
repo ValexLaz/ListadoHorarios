@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'firebase_firestore.dart';
-import 'semestre_card.dart';
+import 'package:horarios/shared/components/item.dart'; // Asegúrate de importar este paquete si no lo has hecho
+import 'class/view/class.view.dart'; // Asegúrate de importar la página de ClassView
 
 class SemestresPage extends StatefulWidget {
   @override
@@ -15,6 +16,20 @@ class _SemestresPageState extends State<SemestresPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Semestres'),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.view_module), // Puedes cambiar el icono según tus preferencias
+            onPressed: () {
+              // Navegar a ClassView al hacer clic en el botón
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ClassView(),
+                ),
+              );
+            },
+          ),
+        ],
       ),
       body: FutureBuilder<List<Map<String, dynamic>>>(
         // Obtener la lista de semestres desde Firestore
@@ -29,9 +44,9 @@ class _SemestresPageState extends State<SemestresPage> {
             return ListView.builder(
               itemCount: semestres.length,
               itemBuilder: (context, index) {
-                return SemestreCard(
-                  name: semestres[index]['name'],
-                  description: semestres[index]['description'],
+                return ItemOfList(
+                  data: semestres[index],
+                  title: semestres[index]['name'],
                 );
               },
             );
