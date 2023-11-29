@@ -6,6 +6,9 @@ import 'firebase_firestore.dart';
 import 'login.dart'; // Importa la página de inicio de sesión
 import 'carreras.dart';
 import 'semestres.dart';
+import './class/view/class.view.dart';
+import './teachers/view/professor.view.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,7 +26,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'My App',
-      home: CarrerasPage(), // Cambia MyHomePage() por LoginPage()
+      home: ProfessorView(), // Cambia MyHomePage() por LoginPage()
     );
   }
 }
