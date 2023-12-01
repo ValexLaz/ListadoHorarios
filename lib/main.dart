@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
-import 'firebase_authentication.dart';
-import 'firebase_firestore.dart';
 import 'login.dart'; // Importa la página de inicio de sesión
-import 'carreras.dart';
-import 'semestres.dart';
-import './class/view/class.view.dart';
-import './teachers/view/professor.view.dart';
 
 
 void main() async {

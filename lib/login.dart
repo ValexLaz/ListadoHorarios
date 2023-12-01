@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'carreras.dart';
 import 'firebase_authentication.dart';
+import 'registro.dart'; // Asegúrate de importar el archivo de la pantalla de registro
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class LoginPage extends StatelessWidget {
   final FirebaseAuthService authService = FirebaseAuthService();
-
-  // Controladores para los campos de texto
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
@@ -88,17 +88,19 @@ class LoginPage extends StatelessWidget {
             SizedBox(height: 30),
             ElevatedButton(
               onPressed: () async {
-                // Obtén los valores de los campos de texto
                 String email = emailController.text.trim();
                 String password = passwordController.text.trim();
 
-                // Verifica que los campos no estén vacíos
                 if (email.isNotEmpty && password.isNotEmpty) {
-                  // Llama al método de inicio de sesión
-                  bool success = await authService.signInUser(email, password);
+                  QuerySnapshot<Map<String, dynamic>>? snapshot =
+                      await FirebaseFirestore.instance
+                          .collection('usuarios')
+                          .where('email', isEqualTo: email)
+                          .where('contraseña', isEqualTo: password)
+                          .limit(1)
+                          .get() as QuerySnapshot<Map<String, dynamic>>?;
 
-                  if (success) {
-                    // Navegar a CarrerasPage si el inicio de sesión es exitoso
+                  if (snapshot != null && snapshot.docs.isNotEmpty) {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -106,12 +108,12 @@ class LoginPage extends StatelessWidget {
                       ),
                     );
                   } else {
-                    // Muestra un mensaje de error si hay un problema con el inicio de sesión
                     showDialog(
                       context: context,
                       builder: (context) => AlertDialog(
                         title: Text('Error'),
-                        content: Text('Credenciales incorrectas. Por favor, inténtalo de nuevo.'),
+                        content: Text(
+                            'Credenciales incorrectas. Por favor, inténtalo de nuevo.'),
                         actions: [
                           TextButton(
                             onPressed: () => Navigator.pop(context),
@@ -122,7 +124,6 @@ class LoginPage extends StatelessWidget {
                     );
                   }
                 } else {
-                  // Muestra un mensaje de error si algún campo está vacío
                   showDialog(
                     context: context,
                     builder: (context) => AlertDialog(
@@ -148,6 +149,29 @@ class LoginPage extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12)),
+              ),
+            ),
+            SizedBox(height: 15),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => RegistroPage(),
+                  ),
+                );
+              },
+              child: Padding(
+                padding: EdgeInsets.all(16),
+                child: Text(
+                  'Sign Up',
+                  style: TextStyle(fontSize: 18),
+                ),
+              ),
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
               ),
             ),
           ],
