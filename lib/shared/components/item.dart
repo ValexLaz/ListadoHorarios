@@ -10,52 +10,53 @@ class ItemOfList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-        elevation: 4,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
-        child: Padding(
-          padding: EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                height: 30,
-                margin: EdgeInsets.only(bottom: 12,right: 12),
-                color: const Color.fromARGB(255, 33, 47, 243),
-                child: Row(
-                  children: [
-                    Container(
-                      width: 40,
-                      color: Color.fromARGB(255, 11, 24, 168),
-                      child: Center(
-                        child: Text(
-                          getNameAbrev(),
-                          style: TextStyle(
-                            color: Colors
-                                .white, // Cambia el color del texto según desees
-                            fontWeight: FontWeight.bold,
-                            fontSize: 19,
-                          ),
+      elevation: 4,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+      child: Padding(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              height: 30,
+              margin: EdgeInsets.only(bottom: 12, right: 12),
+              decoration: BoxDecoration(
+                  color: const Color.fromARGB(255, 33, 47, 243),
+                  borderRadius: BorderRadius.circular(12)),
+              child: Row(
+                children: [
+                  Container(
+                    width: 40,
+                    color: Color.fromARGB(255, 11, 24, 168),
+                    child: Center(
+                      child: Text(
+                        getNameAbrev(),
+                        style: TextStyle(
+                          color: Colors
+                              .white, // Cambia el color del texto según desees
+                          fontWeight: FontWeight.bold,
+                          fontSize: 19,
                         ),
                       ),
                     ),
-                    Container(
-                      margin: EdgeInsets.only(left: 12),
-                      child: Text(
-                        title,
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    )
-                  ],
-                ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(left: 12),
+                    child: Text(
+                      title,
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  )
+                ],
               ),
-              Column(
-                children: _buildDynamicFields(),
-              )
-            ],
-          ),
+            ),
+            Column(
+              children: _buildDynamicFields(),
+            )
+          ],
         ),
-      
+      ),
     );
   }
 
@@ -109,15 +110,14 @@ class ItemOfList extends StatelessWidget {
     );
   }
 
-String getNameAbrev() {
-  dynamic titulo = title.split(" ");
-  if (titulo.length >= 2 && titulo[0].isNotEmpty && titulo[1].isNotEmpty) {
-    return " ${titulo[0][0]} ${titulo[1][0]}";
-  } else if (titulo.length >= 1 && titulo[0].isNotEmpty) {
-    return " ${titulo[0][0]}";
-  } else {
-    return ""; // Manejar el caso en que el título no tiene palabras
+  String getNameAbrev() {
+    dynamic titulo = title.split(" ");
+    if (titulo.length >= 2 && titulo[0].isNotEmpty && titulo[1].isNotEmpty) {
+      return " ${titulo[0][0]} ${titulo[1][0]}";
+    } else if (titulo.length >= 1 && titulo[0].isNotEmpty) {
+      return " ${titulo[0][0]}";
+    } else {
+      return ""; // Manejar el caso en que el título no tiene palabras
+    }
   }
-}
-
 }
