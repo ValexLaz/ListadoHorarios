@@ -1,0 +1,21 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+
+// ...
+
+await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+);
+
+Inicializa Firebase y agrega complementos
+Para inicializar Firebase, llama a Firebase.initializeApp desde el paquete firebase_code con la configuración de tu nuevo archivo firebase_options.dart:
+
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+
+// ...
+
+await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+);
+Luego, agrega y comienza a usar los complementos de Flutter de los productos de Firebase que quieras usar.

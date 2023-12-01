@@ -1,7 +1,15 @@
 import 'dart:math';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:horarios/home/home_view.dart';
-void main() {
+import 'package:horarios/login.dart';
+
+import 'firebase_options.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -17,49 +25,12 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: Stack(
-          children: [
-            CustomPaint(
-              size: Size(MediaQuery.of(context).size.width,
-                  MediaQuery.of(context).size.height),
-              painter: FondoPersonalizado(),
-            ),
-            HomeView()
-          ],
+        body: 
+            LoginPage()
+          
         ),
-      ),
+      
     );
   }
 }
 
-class FondoPersonalizado extends CustomPainter {
-  final List<Color> circleColors = [
-    Color.fromARGB(129, 151, 130, 236),
-    Color.fromARGB(157, 110, 55, 212),
-    Color.fromARGB(130, 160, 85, 195),
-    Color.fromARGB(126, 139, 87, 237)
-  ];
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint();
-    final random = Random();
-    final numberOfColors = circleColors.length;
-
-    for (int i = 0; i < 7; i++) {
-      final circleRadius =
-          random.nextDouble() * 80 + 40; // Tamaños aleatorios entre 20 y 70
-      final circleX = random.nextDouble() * size.width;
-      final circleY = random.nextDouble() * size.height;
-
-      paint.color = circleColors[
-          i % numberOfColors]; // Selecciona los colores de forma cíclica
-      canvas.drawCircle(Offset(circleX, circleY), circleRadius, paint);
-    }
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return false;
-  }
-}

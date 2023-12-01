@@ -109,8 +109,15 @@ class ItemOfList extends StatelessWidget {
     );
   }
 
-  String getNameAbrev(){
-    dynamic titulo =  title.split(" ");
+String getNameAbrev() {
+  dynamic titulo = title.split(" ");
+  if (titulo.length >= 2 && titulo[0].isNotEmpty && titulo[1].isNotEmpty) {
     return " ${titulo[0][0]} ${titulo[1][0]}";
+  } else if (titulo.length >= 1 && titulo[0].isNotEmpty) {
+    return " ${titulo[0][0]}";
+  } else {
+    return ""; // Manejar el caso en que el título no tiene palabras
   }
+}
+
 }
