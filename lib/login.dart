@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:horarios/home/home_view.dart';
 import 'carreras.dart';
 import 'firebase_authentication.dart';
 import 'registro.dart'; // Asegúrate de importar el archivo de la pantalla de registro
@@ -104,7 +105,7 @@ class LoginPage extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => CarrerasPage(),
+                        builder: (context) => HomeView(),
                       ),
                     );
                   } else {
