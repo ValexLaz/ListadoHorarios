@@ -24,13 +24,9 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        body: 
-            LoginPage()
-          
-        ),
-      
+      debugShowCheckedModeBanner: false,
+      locale: Locale('es'),
+      home: Scaffold(body: LoginPage()),
     );
   }
 }
-

@@ -1,7 +1,11 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:horarios/carreras.dart';
+import 'package:horarios/class/view/class.view.dart';
 import 'package:horarios/home/components/card_preset.dart';
+import 'package:horarios/semestres.dart';
+import 'package:horarios/teachers/view/professor.view.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -29,61 +33,52 @@ class _HomeViewState extends State<HomeView> {
               Container(
                 margin: EdgeInsets.only(bottom: 25, top: 15),
                 decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 49, 172, 160),
-                    borderRadius: BorderRadius.circular(22)),
-                height: 220,
-                child: Text("Card1"),
+                  color: Color(0xFFF5F5FF),
+                  borderRadius: BorderRadius.circular(22),
+                  border: Border.all(
+                    color: Color.fromARGB(255, 174, 174, 252),
+                    width: 4,
+                  ),
+                ),
+                height: 250,
+                child: Image.asset('assets/images/introduction.png'),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CardPresentation(
-                      margin: EdgeInsets.only(right: 6, bottom: 25),
-                      colors: Color.fromARGB(104, 31, 120, 215),
-                      height: 140),
+                    margin: EdgeInsets.only(right: 6, bottom: 25),
+                    colors: Color.fromARGB(186, 8, 42, 79),
+                    height: 300,
+                    section: "Docentes",
+                    nextpage: ProfessorView(),
+                  ),
                   CardPresentation(
-                      margin: EdgeInsets.only(left: 6, bottom: 25),
-                      colors: Color.fromARGB(117, 146, 174, 157),
-                      height: 140),
+                    margin: EdgeInsets.only(left: 6, bottom: 25),
+                    colors: Color.fromARGB(168, 2, 150, 61),
+                    height: 300,
+                    section: "Semestre",
+                    nextpage: SemestresPage(),
+                  ),
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CardPresentation(
-                      margin: EdgeInsets.only(right: 6, bottom: 25),
-                      colors: Color.fromARGB(104, 31, 120, 215),
-                      height: 140),
+                    margin: EdgeInsets.only(right: 6, bottom: 25),
+                    colors: Color.fromARGB(172, 166, 12, 7),
+                    height: 300,
+                    section: "Carreras",
+                    nextpage: CarrerasPage(),
+                  ),
                   CardPresentation(
-                      margin: EdgeInsets.only(left: 6, bottom: 25),
-                      colors: Color.fromARGB(117, 146, 174, 157),
-                      height: 140),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  CardPresentation(
-                      margin: EdgeInsets.only(right: 6, bottom: 25),
-                      colors: Color.fromARGB(104, 31, 120, 215),
-                      height: 140),
-                  CardPresentation(
-                      margin: EdgeInsets.only(left: 6, bottom: 25),
-                      colors: Color.fromARGB(117, 146, 174, 157),
-                      height: 140),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  CardPresentation(
-                      margin: EdgeInsets.only(right: 6, bottom: 25),
-                      colors: Color.fromARGB(104, 31, 120, 215),
-                      height: 140),
-                  CardPresentation(
-                      margin: EdgeInsets.only(left: 6, bottom: 25),
-                      colors: Color.fromARGB(117, 146, 174, 157),
-                      height: 140),
+                    margin: EdgeInsets.only(left: 6, bottom: 25),
+                    colors: Color.fromARGB(172, 54, 17, 124),
+                    height: 300,
+                    section: "Materias",
+                    nextpage: ClassView(),
+                  ),
                 ],
               ),
             ],
