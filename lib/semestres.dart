@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:horarios/class/view/class.view.dart';
 import 'firebase_firestore.dart';
-import 'package:horarios/shared/components/item.dart';
+import 'package:horarios/teachers/view/professor.view.dart';
 
 class SemestresPage extends StatefulWidget {
   final String? carreraId;
@@ -58,8 +58,16 @@ class _SemestresPageState extends State<SemestresPage> {
               itemBuilder: (context, index) {
                 return InkWell(
                   onTap: () {
-                    // Puedes agregar la lógica que desees al hacer clic en la tarjeta del semestre
-                    print('Clic en el semestre ${semestres[index]['name']}');
+                    // Al hacer clic en el semestre, navegar a la página de Materias
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ClassView(
+                          semestreId: semestres[index][
+                              'id'], // Asegúrate de tener un campo 'id' en tus documentos de semestre
+                        ),
+                      ),
+                    );
                   },
                   child: Card(
                     margin: EdgeInsets.all(8.0),
