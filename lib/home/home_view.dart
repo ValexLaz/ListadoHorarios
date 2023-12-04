@@ -17,7 +17,8 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    return SingleChildScrollView(
+        child: Stack(
       children: [
         CustomPaint(
           size: Size(MediaQuery.of(context).size.width,
@@ -85,7 +86,7 @@ class _HomeViewState extends State<HomeView> {
           ),
         )
       ],
-    );
+    ));
   }
 }
 

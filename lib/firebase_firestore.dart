@@ -38,13 +38,11 @@ class FirebaseFirestoreService {
     }
   }
 
-  Future<List<Map<String, dynamic>>> getCarreras() async {
+  Future<List<QueryDocumentSnapshot>> getCarreras() async {
     try {
       QuerySnapshot querySnapshot =
           await _firestore.collection('carreras').get();
-      return querySnapshot.docs
-          .map((doc) => doc.data() as Map<String, dynamic>)
-          .toList();
+      return querySnapshot.docs;
     } catch (e) {
       print('Error al obtener carreras: $e');
       throw Exception('Error al obtener carreras');
@@ -92,6 +90,7 @@ class FirebaseFirestoreService {
       throw Exception('Error al obtener materias');
     }
   }
+  
 
   // Otros métodos para acceder y modificar datos en las colecciones
   Future<List<Map<String, dynamic>>> findDocenteByName(String nombre) async {
